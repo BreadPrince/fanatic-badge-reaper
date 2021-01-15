@@ -1,0 +1,38 @@
+name: Getting fanatic badge on Stackoverflow
+
+on:
+  schedule:
+    - cron: "1 */8 * * *"
+
+  push:
+    branches:
+      - master
+
+jobs:
+  bot:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Set environment: Node.js 12.x"
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12.x"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-nm-cache
+          restore-keys: ${{ runner.OS }}-nm-cache
+      - name: Install dependencies
+        run: npm install
+      - name: Cache Token
+        uses: actions/cache@v2
+        with:
+          path: .fanaticconfig
+          key: ${{ runner.OS }}-token-cache
+          restore-keys: ${{ runner.OS }}-token-cache
+      - name: "Run Script"
+        run: node index.js
+        env:
+          FC_EMAIL: ${{ secrets.FC_EMAIL }}
+          FC_PASSWORD: ${{ secrets.FC_PASSWORD }}
