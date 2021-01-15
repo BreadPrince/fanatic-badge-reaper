@@ -57,13 +57,6 @@ class Login {
                             }
                             reject('No available cookies found');
                         } else if (res.statusCode === 200) {
-                            let content = '';
-                            res.on('data', d => {
-                                content += d;
-                            });
-                            res.on('end', () => {
-                                console.log(content);
-                            });
                             reject('Account or password incorrect');
                         } else {
                             reject(`Status: ${res.statusCode}`);
@@ -84,7 +77,7 @@ class Login {
             }
         } catch (err) {
             console.error(err);
-            return false;
+            process.exit(1);
         }
     }
 
