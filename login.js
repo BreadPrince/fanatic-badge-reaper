@@ -47,7 +47,6 @@ class Login {
                                         reject('Extract cookies failed.');
                                     } else {
                                         if (matches[1].split('&s').filter(d => d).length >= 2) {
-                                            console.log(matches[1]);
                                             resolve(matches[1]);
                                         } else {
                                             reject('Invalid token:', matches[1]);
