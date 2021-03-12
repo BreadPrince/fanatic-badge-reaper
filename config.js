@@ -51,7 +51,7 @@ class Config {
             fs.writeFileSync(CONFIG_FILE_PATH, JSON.stringify(configs));
             return true;
         } catch (err) {
-            console.error(err);
+            // console.error(err);
         }
     }
 

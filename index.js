@@ -27,7 +27,7 @@ const { BASE_HEADERS, URL_FOR_TOKEN_CHECK  } = require('./constants');
             if (html) {
                 const matches = html.toString().match(/<a href="\/users\/(\d+)/);
                 if (matches) {
-                    console.log('user id:', matches[1]);
+                    // console.log('user id:', matches[1]);
                     badgeUrl = `https://stackoverflow.com/users/activity/next-badge-popup?userId=${matches[1]}&isTagBadge=false&_=${Date.now()}`;
                 }
             }
@@ -42,7 +42,7 @@ const { BASE_HEADERS, URL_FOR_TOKEN_CHECK  } = require('./constants');
                 ['Enthusiast', 'Fanatic'].forEach(badge => {
                     const badgeString = extractBadgeString(ret, badge);
                     const badgeObj = new Badge(badgeString);
-                    console.log(badgeObj.toString());
+                    console.log(badgeObj ? badgeObj.toString() : `${badge} (You've got it!)`);
                 });
                 console.log('ok');
             } else {
