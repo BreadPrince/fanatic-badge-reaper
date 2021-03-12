@@ -41,8 +41,12 @@ const { BASE_HEADERS, URL_FOR_TOKEN_CHECK  } = require('./constants');
             if (ret) {
                 ['Enthusiast', 'Fanatic'].forEach(badge => {
                     const badgeString = extractBadgeString(ret, badge);
-                    const badgeObj = new Badge(badgeString);
-                    console.log(badgeObj ? badgeObj.toString() : `${badge} (You've got it!)`);
+                    if (badgeString) {
+                        const badgeObj = new Badge(badgeString);
+                        console.log(badgeObj.toString());
+                    } else {
+                        console.log(`${badge} (You've got it!)`);
+                    }
                 });
                 console.log('ok');
             } else {
